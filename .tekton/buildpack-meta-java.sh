@@ -140,8 +140,8 @@ echo "### Pack extra args: $PACK_ARGS"
 
 echo "### Execute: pack buildpack package ..."
 pack buildpack package \
-  "${PACKAGE}:${VERSION}" \
-  --config "${COMPILED_BUILDPACK}/package.toml" \
+  $IMAGE \
+  --config "package.toml" \
   $PACK_ARGS
 
 echo "### Export the image as OCI"
