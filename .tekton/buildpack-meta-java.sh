@@ -152,8 +152,11 @@ echo "### Export: IMAGE_URL, IMAGE_DIGEST & BASE_IMAGES_DIGESTS under: $BUILD_DI
 echo "###########################################################"
 echo -n "$IMAGE" > $BUILD_DIR/volumes/workdir/IMAGE_URL
 
-BASE_IMAGE=$(tq -f builder.toml -o json 'stack' | jq -r '."build-image"')
-podman inspect ${BASE_IMAGE} | jq -r '.[].Digest' > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
+#BASE_IMAGE=$(tq -f builder.toml -o json 'stack' | jq -r '."build-image"')
+#podman inspect ${BASE_IMAGE} | jq -r '.[].Digest' > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
+
+echo "### Generate a dummy digest of the BASE_IMAGE which don't exist here !!"
+echo "sha256sum buildpack.toml | awk '{print $1}'" > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
 
 echo "### Push the image produced and get its digest: $IMAGE"
 podman push \
