@@ -38,6 +38,7 @@ job:
         # Buildpack
         - REPOSITORY_TO_FETCH: "https://github.com/redhat-buildpacks/buildpack-meta-java"
         - PACK_CLI_VERSION: "v0.35.1"
+        - GO_VERSION: "1.23.1"
         - BUILD_ARGS:
             - "-v"
       workspaces:
