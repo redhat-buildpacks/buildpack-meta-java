@@ -104,7 +104,6 @@ curl -sSL "${REPOSITORY_TO_FETCH}/tarball/main" | tar -xz -C ${TEMP_DIR}
 mv ${TEMP_DIR}/redhat-buildpacks-buildpack-meta-java-* ${BUILDPACK_PROJECTS}/buildpack-meta-java
 cd ${BUILDPACK_PROJECTS}/buildpack-meta-java
 
-
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 VERSION="v0.1.0" # TODO => We should get it !
 OS="linux"
@@ -120,7 +119,7 @@ create-package \
 PACKAGE_FILE="${SOURCE_PATH}/package.toml"
 if [ -f "${PACKAGE_FILE}" ]; then
   cp "${PACKAGE_FILE}" "${COMPILED_BUILDPACK}/package.toml"
-  printf '[buildpack]\nuri = "%s"\n\n[platform]\nos = "%s"\n' "${COMPILED_BUILDPACK}" "${OS}" >> "${COMPILED_BUILDPACK}/package.toml"
+  printf '[buildpack]\nuri = "%s"\n\n[platform]\nos = "%s"\n' "$(pwd)/${COMPILED_BUILDPACK}" "${OS}" >> "${COMPILED_BUILDPACK}/package.toml"
 fi
 
 # create-package puts the buildpack here, we need to run from that directory
@@ -129,7 +128,7 @@ cd "${COMPILED_BUILDPACK}"
 echo "### Show buildpack.toml content for java buildpack"
 cat buildpack.toml
 
-echo "### Show buildpack.toml content for java buildpack"
+echo "### Show package.toml content for java buildpack"
 cat package.toml
 
 echo "### Build the builder image using pack"
