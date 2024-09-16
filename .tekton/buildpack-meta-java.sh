@@ -156,7 +156,7 @@ echo -n "$IMAGE" > $BUILD_DIR/volumes/workdir/IMAGE_URL
 #podman inspect ${BASE_IMAGE} | jq -r '.[].Digest' > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
 
 echo "### Generate a dummy digest of the BASE_IMAGE which don't exist here !!"
-echo "sha256sum buildpack.toml | awk '{print $1}'" > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
+echo -n $(sha256sum buildpack.toml | awk '{print $1}') > $BUILD_DIR/volumes/workdir/BASE_IMAGES_DIGESTS
 
 echo "### Push the image produced and get its digest: $IMAGE"
 podman push \
