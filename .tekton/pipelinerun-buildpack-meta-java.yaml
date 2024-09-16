@@ -180,6 +180,8 @@ spec:
             value: "$(params.output-image)"
           - name: "PACK_CLI_VERSION"
             value: "$(params.PACK_CLI_VERSION)"
+          - name: "GO_VERSION"
+            value: "$(params.GO_VERSION)"
         steps:
         - args:
           - "$(params.BUILD_ARGS[*])"

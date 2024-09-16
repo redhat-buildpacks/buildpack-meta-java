@@ -59,11 +59,11 @@ job:
         - REPOSITORY_TO_FETCH: $(params.REPOSITORY_TO_FETCH)
         - IMAGE: $(params.output-image)
         - PACK_CLI_VERSION: $(params.PACK_CLI_VERSION)
+        - GO_VERSION: $(params.GO_VERSION)
 
       args:
         - $(params.BUILD_ARGS[*])
 
-      #scriptFileUrl: https://raw.githubusercontent.com/ch007m/pipeline-dsl-builder/main/scripts/ssh-remote.sh
       volumes:
         - name: ssh
           mountPath: /ssh
